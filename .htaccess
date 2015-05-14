@@ -1,0 +1,21 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.(.*) [NC]
+RewriteRule ^(.*) http://%1/$1 [R=301,L]
+
+Options -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+
+<files ~ "^.*\.([Hh][Tt][Aa])">
+order allow,deny
+deny from all
+satisfy all
+</files>
+
